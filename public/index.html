@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My Twitter</title>
+		<script src="main.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	</head>
+	<body onload="getTweets()">
+		<nav class="navbar navbar-light bg-light">
+		  <a class="navbar-brand" href="#">My Twitter</a>
+		</nav>
+		<div class="container">
+		  <div class="row">
+			<div class="col-sm">
+				<h2>Clima</h2>
+				<form onsubmit="return false">
+				  <div class="form-group">
+					<label for="exampleInputEmail1">Ciudad</label>
+					<input type="input" class="form-control" name="ciudad" id="ciudad" placeholder="En donde vives?">					
+				  </div>				  
+				  <button type="button" onclick="getWeather()" class="btn btn-primary">Consultar</button>
+				</form>
+				<div id="weather"></div>
+			</div>
+			<div class="col-sm">
+				<h2>Twitter</h2>
+				<form onsubmit="return false">
+				  <div class="form-group">
+					<label for="contenido">Contenido</label>
+					<input type="input" class="form-control" name="contenido" id="contenido" placeholder="Tweetea algo!">					
+				  </div>				  
+				  <button type="button" onclick="newTweet()" class="btn btn-primary">Enviar</button>
+				  <button type="button" onclick="findTweet()" class="btn btn-primary">Buscar</button>
+				  <button type="button" onclick="deleteTweet()" class="btn btn-primary">Eliminar</button>
+				</form>
+				<div id="tweets">No hay tweets para mostrar</div>
+			</div>
+		  </div>
+		</div>		
+	</body>
+</html>
