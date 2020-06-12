@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My Twitter - Registro</title>
+		<script src="js/users.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	</head>
+	<body>
+		<nav class="navbar navbar-light bg-light">
+		  <a class="navbar-brand" href="#">My Twitter - Registro</a>
+		</nav>
+		
+		<div class="container">
+		  <div class="row">
+			<div class="col-sm">
+				<h2>Registrese</h2>
+				<form onsubmit="return false">
+				  <div class="form-group">
+					<label for="username">Usuario</label>
+					<input type="input" class="form-control" name="username" id="username" placeholder="Usuario">					
+				  </div>
+				  <div class="form-group">
+					<label for="name">Nombre</label>
+					<input type="input" class="form-control" name="name" id="name" placeholder="Nombre">					
+				  </div>
+				  <div class="form-group">
+					<label for="lastname">Apellidos</label>
+					<input type="input" class="form-control" name="lastname" id="lastname" placeholder="Apellidos">					
+				  </div>
+				  <div class="form-group">
+					<label for="email">Email</label>
+					<input type="input" class="form-control" name="email" id="email" placeholder="Email">					
+				  </div>
+				  <div class="form-group">
+					<label for="password">Contrase&ntilde;a</label>
+					<input type="password" class="form-control" name="password" id="password" placeholder="Contrase&ntilde;a">					
+				  </div>
+				  <button type="button" onclick="newUser()" class="btn btn-primary">Enviar</button>
+				  <button type="button" onclick="getUsers()" class="btn btn-primary">Ver Usuarios</button>
+				</form>
+			</div>
+		  </div>
+		</div>	
+	</body>
+</html>

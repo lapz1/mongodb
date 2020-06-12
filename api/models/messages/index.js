@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const tweetSchema = new Schema({
-	content: {
+const messageSchema = new Schema({
+	content:{
 		type: String,
 		required: true
 	},
@@ -10,12 +10,12 @@ const tweetSchema = new Schema({
 		type: String,
 		required: true
 	},
-	userId: {
+	tweetId:{
 		type: String,
 		required: true
 	}
 });
 
-const tweetModel = mongoose.model('tweets', tweetSchema);
+const messageModel = mongoose.model('messages', messageSchema);
 
-module.exports = tweetModel;
+module.exports = messageModel;

@@ -10,7 +10,7 @@ app.use(express.json());
 app.use('/api',api);
 app.use(express.static('./public'));
 
-mongoose.connect('mongodb://' + config.db.host + ':' + config.db.port + "/" + config.db.name, {
+mongoose.connect('mongodb+srv://' + config.db.user + ":" + config.db.password + "@" + config.db.host + "/" + config.db.name, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 });

@@ -73,6 +73,30 @@ const deleteTweet = () => {
 	});
 };
 
+const login = () => {
+	//Se define la ruta hacia donde se enviará la petición
+	const url = '/api/users/login';
+	//Se contruye el objeto que se enviará al API
+	const user = {
+		username: document.getElementById("username").value,
+		password: document.getElementById("password").value
+	};
+	//Se hace una petición tipo POST usando Fetch
+	fetch(url,{
+		method: 'post',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(user)
+	}).then(res => res.json())
+	//Respuesta con error
+	.catch(error => console.error('Error:', error))
+	//Respuesta exitosa
+	.then(response => {
+		document.getElementById("username").value = "";
+		document.getElementById("password").value = "";
+		alert(response.resp);
+	});
+};
+
 const getWeather = () => {
 	const ciudad = document.getElementById("ciudad").value;
 	document.getElementById("weather").innerHTML = "";

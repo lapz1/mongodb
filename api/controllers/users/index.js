@@ -1,23 +1,30 @@
 const express = require('express');
 const router = express.Router();
 
+const users = require('./../../services/users');
+
+router.route('/login')
+	.post((req, res) => {
+		users.loginUser(req, res);
+	});
+	
 router.route('/')
 	.get((req, res) => {
-		res.send('Lista de Usuarios');
+		users.loadUsers(req, res);
 	})
 	.post((req, res) => {
-		res.send('Nuevo Usuarios');
+		users.createUser(req, res);
 	});
 
 router.route('/:id')
 	.get((req, res) => {
-		res.send('Página del Usuario ' + req.params.id);
+		users.getUser(req, res);
 	})
 	.delete((req, res) => {
-		res.send('Eliminar Usuario ' + req.params.id);
+		users.deleteUser(req, res);
 	})
 	.put((req, res) => {
-		res.send('Actualizar Usuario ' + req.params.id);
+		users.updateUser(req, res);
 	});
 
 module.exports = router;
