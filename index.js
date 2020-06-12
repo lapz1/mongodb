@@ -16,6 +16,6 @@ mongoose.connect('mongodb+srv://' + config.db.user + ":" + config.db.password + 
 });
 
 //Server
-app.listen(()=> {
+app.listen(process.env.PORT || config.server.port, ()=> {
     console.log('Servidor Iniciado');
 });
