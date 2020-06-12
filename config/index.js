@@ -1,15 +1,15 @@
 const config = {
     server: {
-		port: 80,
-		tokenKey: 'books-key',
-		saltRounds: 10		
+		port: process.env.SERVER_PORT,
+		tokenKey: process.env.SERVER_TOKENKEY,
+		saltRounds: process.env.SERVER_SALTROUNDS	
 	},
 	db: {
-		host: 'cluster0-sx6ox.mongodb.net',
-		user: 'lapz1',
-		password: 'Lapz@1987',
-		port: 27017,
-		name: 'testdb'
+		host: process.env.DB_HOST,
+		user: process.env.DB_USER,
+		password: process.env.DB_PASS,
+		port: process.env.DB_PORT,
+		name: process.env.DB_NAME
 	}
 };
 

@@ -1,3 +1,6 @@
+//Librerias
+require('dotenv').config();
+
 //Modules
 const express = require('express');
 const mongoose = require('mongoose');
