@@ -3,12 +3,21 @@
 	<head>
 		<title>My Twitter</title>
 		<script src="js/tweets.js"></script>
-		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<script src="js/users.js"></script>
+		<script src="js/messages.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 	</head>
-	<body onload="getTweets()">
+	<body onload="loadTweets(); checkLogin();">
 		<nav class="navbar navbar-light bg-light">
 		  <a class="navbar-brand" href="#">My Twitter</a>
+		  <div id="register-content">
+				<a class="navbar-brand" href="/users.html">Registrarse</a>
+		  </div>
+		  <div id="logout-content" style="display: none;">
+			<div id="username-content" class="navbar-brand" ></div>
+			<a class="navbar-brand" href="javascript:logout();">Cerrar sesi&oacute;n</a>
+		  </div>
 		</nav>
 		<div class="container">
 		  <div class="row">
@@ -19,7 +28,7 @@
 					<label for="exampleInputEmail1">Ciudad</label>
 					<input type="input" class="form-control" name="ciudad" id="ciudad" placeholder="En donde vives?">					
 				  </div>				  
-				  <button type="button" onclick="getWeather()" class="btn btn-primary">Consultar</button>
+				  <button type="button" onclick="getWeather()" class="btn btn-primary  float-right">Consultar</button>
 				</form>
 				<div id="weather"></div>
 			</div>
@@ -35,7 +44,7 @@
 						<label for="password">Contrase&ntilde;a</label>
 						<input type="password" class="form-control" name="password" id="password" placeholder="Contrase&ntilde;a">					
 					  </div>
-					  <button type="button" onclick="login()" class="btn btn-primary">Enviar</button>
+					  <button type="button" onclick="login()" class="btn btn-primary float-right">Enviar</button>
 					</form>
 				</div>
 				
@@ -46,9 +55,7 @@
 						<label for="contenido">Contenido</label>
 						<input type="input" class="form-control" name="contenido" id="contenido" placeholder="Tweetea algo!">					
 					  </div>
-					  <button type="button" onclick="newTweet()" class="btn btn-primary">Enviar</button>
-					  <button type="button" onclick="findTweet()" class="btn btn-primary">Buscar</button>
-					  <button type="button" onclick="deleteTweet()" class="btn btn-primary">Eliminar</button>
+					  <button type="button" onclick="newTweet()" class="btn btn-primary float-right">Enviar</button>
 					</form>
 				</div>
 				<div id="tweets">No hay tweets para mostrar</div>

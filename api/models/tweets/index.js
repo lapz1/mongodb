@@ -1,21 +1,20 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const collection = 'tweets';
 const tweetSchema = new Schema({
 	content: {
 		type: String,
 		required: true
 	},
-	date: {
-		type: String,
-		required: true
-	},
 	userId: {
-		type: String,
-		required: true
+		type: Schema.ObjectId, 
+		ref: 'users'
 	}
+},{
+    timestamps: true
 });
 
-const tweetModel = mongoose.model('tweets', tweetSchema);
+const tweetModel = mongoose.model(collection, tweetSchema);
 
 module.exports = tweetModel;

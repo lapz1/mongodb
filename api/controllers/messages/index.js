@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
+const users = require('./../../services/users');
 const messages = require('./../../services/messages');
 
 router.route('/')
-	.get((req, res) => {
-		messages.loadMessages(req, res);
-	})
-	.post((req, res) => {
+	.post(users.verifyUser, (req, res) => {
 		messages.createMessage(req, res);
 	});
 
@@ -15,10 +13,10 @@ router.route('/:id')
 	.get((req, res) => {
 		messages.getMessage(req, res);
 	})
-	.delete((req, res) => {
+	.delete(users.verifyUser, (req, res) => {
 		messages.deleteMessage(req, res);
 	})
-	.put((req, res) => {
+	.put(users.verifyUser, (req, res) => {
 		messages.updateMessage(req, res);
 	});
 

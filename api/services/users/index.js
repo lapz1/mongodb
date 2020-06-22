@@ -5,6 +5,25 @@ const usersModel = require('./../../models/users');
 const dateUtilities = require('./../../utilities/date');
 const config = require('./../../../config');
 
+const verifyUser = (req, res, next) => {
+	const token = req.headers['x-access-token'];
+    let decoded;    
+    try{
+        decoded = jwt.verify(token, config.server.tokenKey);
+        req._id = decoded._id;
+    }catch(error){
+        decoded = false;
+    }
+	
+	if(!!decoded){
+		next();
+	} else {
+		res
+		.status(500)
+		.send({resp: 'Usuario no autorizado'});	
+	}	
+};
+
 const getUser = (req, res) => {
 	var id = req.params.id;
 	usersModel.findById(id)
@@ -27,7 +46,7 @@ const loadUsers = (req, res) => {
 
 const createUser = (req, res) => {
 	const plainPassword = req.body.password;
-	const salt = bcrypt.genSaltSync(config.saltRounds);
+	const salt = bcrypt.genSaltSync(parseInt(config.server.saltRounds));
 	const hash = bcrypt.hashSync(plainPassword, salt);
 
 	const user = {
@@ -67,10 +86,14 @@ const loginUser = (req, res) => {
 	};
 
 	usersModel.find({username: user.username})
-	.then(objs=>{
-		if(bcrypt.compareSync(user.password, objs[0].password)){
-			token = jwt.sign({username: user.username}, config.server.tokenKey);
-			res.send({resp: 'El usuario: ' + user.username + ', fue asignado con el token: ' + token});
+	.then(users=>{
+		if(bcrypt.compareSync(user.password, users[0].password)){
+			const token = jwt.sign({_id: users[0]._id}, config.server.tokenKey);
+			res.send(JSON.stringify({
+				token: token, 
+				user: user.username,
+				resp: 'El usuario: ' + user.username + ', fue asignado con el token: ' + token
+			}));
 		}else{
 			res.send({resp: 'El usuario: ' + user.username + ' no pudo iniciar sesión'});
 		}
@@ -78,6 +101,7 @@ const loginUser = (req, res) => {
 }
 
 module.exports = {
+	verifyUser,
 	getUser,
 	loadUsers,
 	createUser,
